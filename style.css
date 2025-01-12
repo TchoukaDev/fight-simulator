@@ -6,16 +6,123 @@ body, html {
     min-height: 100vh;
 }
 
-#containerChoixMage {
-    width: 100px;
-    height: 50px;
-    padding: 10px;
-    display : inline-block;
+button {
+    border-radius: 10px;
 }
 
-#containerChoixGuerrier {
-    width: 100px;
-    height: 50px;
-    padding: 10px;
-    display : inline-block;
+#containerButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#containerChoix {
+    text-align: center;
+    padding: 15px;
+    margin: 20px;
+    width: 550px;
+    background-color: silver;
+    font-weight: bold;
+    font-size: large;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+form {
+    padding: 40px;
+    background-color: silver;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.validerPseudo {
+    display: block;
+    margin: 20px auto;
+}
+
+
+.button {
+    padding: 15px 25px;
+    margin: 10px;
+}
+
+.containerGuerrier {
+    background-image: url(images/guerrier.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-radius: 10px;
+
+}
+
+.containerMage {
+    background-image: url(images/mage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-radius: 10px;
+}
+
+.Slime {
+    background-image: url(images/slime.webp);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;     
+    width: 200px;
+    height: 300px;
+}
+#Slime{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.Loup-Garou {
+    background-image: url(images/loupGarou.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 300px;
+}
+#Loup-Garou { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.Dragon {
+    background-image: url(images/dragon.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 300px;
+}
+
+#Dragon {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
 }

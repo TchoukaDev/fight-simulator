@@ -10,6 +10,7 @@ let choixGuerrier = document.createElement("button");
 let containerGuerrier = document.createElement("div");
 let combat = document.querySelector("#combat");
 let deroulementCombat;
+let compteur = 0;
 
 
 class Personnage {
@@ -33,7 +34,7 @@ class Personnage {
         let attaqueSpecialeError = document.querySelector("#attaqueSpecialeError");
         if (this.magie >= 5) {
             personnage.sante -= this.attaque * 5;
-            this.magie = 0
+            this.magie -=5
             attaqueSpecialeError.innerHTML = "";
         }
         else
@@ -119,8 +120,9 @@ function choisirMonstre() {
          }
 
 function etat(personnage, monstre) {
+    compteur++;
     let etat = document.createElement("div");
-    etat.innerHTML = `${personnage.pseudo}: ${personnage.sante} points de vie, ${personnage.magie} points de magie. / ${monstre.pseudo}: ${monstre.sante} points de vie, ${monstre.magie} points de magie`
+    etat.innerHTML = `Tour ${compteur} : ${personnage.pseudo}: ${personnage.sante} points de vie, ${personnage.magie} points de magie. / ${monstre.pseudo}: ${monstre.sante} points de vie, ${monstre.magie} points de magie`
     etat.style.background = "lightblue";
     combat.prepend(etat);
 }
@@ -130,6 +132,9 @@ function genererNombreAleatoire() {
 }
 
 function combattre() {
+
+    etat(personnagePrincipal, monstreChoisi);
+
     containerChoix.textContent = "Que voulez-vous faire?"
     let actions = ["Attaquer", "Lancer une attaque spéciale", "Attendre", "Se soigner"];
     
@@ -145,32 +150,31 @@ function combattre() {
             personnagePrincipal.attaquer(monstreChoisi);
             deroulementCombat = document.createElement("div");
             deroulementCombat.style.background = "lightgreen";
-            deroulementCombat.innerHTML = `${personnagePrincipal.pseudo} attaque ${monstreChoisi.pseudo} et lui inflige ${personnagePrincipal.attaque} dégats.`;
+            deroulementCombat.innerHTML = `Tour ${compteur} : ${personnagePrincipal.pseudo} attaque ${monstreChoisi.pseudo} et lui inflige ${personnagePrincipal.attaque} dégats.`;
             combat.prepend(deroulementCombat);
             break
         case "Lancer une attaque spéciale" :
             personnagePrincipal.attaqueSpeciale(monstreChoisi);
             deroulementCombat = document.createElement("div");
             deroulementCombat.style.background = "lightgreen";
-            deroulementCombat.innerHTML = `${personnagePrincipal.pseudo} lance une attaque puissante sur ${monstreChoisi.pseudo} et lui inflige ${personnagePrincipal.attaque * 5} dégats.`;
+            deroulementCombat.innerHTML = `Tour ${compteur} : ${personnagePrincipal.pseudo} lance une attaque puissante sur ${monstreChoisi.pseudo} et lui inflige ${personnagePrincipal.attaque * 5} dégats.`;
             combat.prepend(deroulementCombat);
             break
         case "Attendre" : 
             personnagePrincipal.attendre();
             deroulementCombat = document.createElement("div");
             deroulementCombat.style.background = "lightgreen";
-            deroulementCombat.innerHTML = `${personnagePrincipal.pseudo} attend et se prépare pour le prochain tour. Il gagne 3 points de magie.`;
+            deroulementCombat.innerHTML = `Tour ${compteur} : ${personnagePrincipal.pseudo} attend et se prépare pour le prochain tour. Il gagne 3 points de magie.`;
             combat.prepend(deroulementCombat);
             break
         case "Se soigner":
             personnagePrincipal.seSoigner();
             deroulementCombat = document.createElement("div");
             deroulementCombat.style.background = "lightgreen";
-            deroulementCombat.innerHTML = `${this.pseudo} se soigne et récupère ${0.25*this.santeMax} points de vie`;
+            deroulementCombat.innerHTML = `Tour ${compteur} : ${personnagePrincipal.pseudo} se soigne et récupère ${0.25*this.santeMax} points de vie`;
             combat.prepend(deroulementCombat);
             break
             }
-    etat(personnagePrincipal, monstreChoisi);
 
     if (monstreChoisi.sante <= 0) {
 
@@ -184,7 +188,7 @@ function combattre() {
                 monstreChoisi.seSoigner();
                 deroulementCombat = document.createElement("div");
                 deroulementCombat.style.background = "lightcoral";
-                deroulementCombat.innerHTML = `${monstreChoisi.pseudo} se soigne et récupère ${0.25*monstreChoisi.santeMax} points de vie`;
+                deroulementCombat.innerHTML = `Tour ${compteur} : ${monstreChoisi.pseudo} se soigne et récupère ${0.25*monstreChoisi.santeMax} points de vie`;
                 combat.prepend(deroulementCombat);;
 
             }
@@ -192,14 +196,14 @@ function combattre() {
                 monstreChoisi.attaquer(personnagePrincipal);
                 deroulementCombat = document.createElement("div");
                 deroulementCombat.style.background = "lightcoral";
-                deroulementCombat.innerHTML = `${monstreChoisi.pseudo} attaque ${personnagePrincipal.pseudo} et lui inflige ${monstreChoisi.attaque} dégats.`;
+                deroulementCombat.innerHTML = `Tour ${compteur} : ${monstreChoisi.pseudo} attaque ${personnagePrincipal.pseudo} et lui inflige ${monstreChoisi.attaque} dégats.`;
                 combat.prepend(deroulementCombat);
             }
         else {
                 monstreChoisi.attendre();
                 deroulementCombat = document.createElement("div");
                 deroulementCombat.style.background = "lightcoral";
-                deroulementCombat.innerHTML = `${monstreChoisi.pseudo} attend et se prépare pour le prochain tour. Il gagne 3 points de magie.`;
+                deroulementCombat.innerHTML = `Tour ${compteur} : ${monstreChoisi.pseudo} attend et se prépare pour le prochain tour. Il gagne 3 points de magie.`;
                 combat.prepend(deroulementCombat);
             }
 
@@ -208,11 +212,12 @@ function combattre() {
         monstreChoisi.attaqueSpeciale(personnagePrincipal);             
         deroulementCombat = document.createElement("div");
         deroulementCombat.style.background = "lightcoral";
-        deroulementCombat.innerHTML = `${monstreChoisi.pseudo} lance une attaque puissante sur ${personnagePrincipal.pseudo} et lui inflige ${monstreChoisi.attaque * 5} dégats.`;
+        deroulementCombat.innerHTML = `Tour ${compteur} : ${monstreChoisi.pseudo} lance une attaque puissante sur ${personnagePrincipal.pseudo} et lui inflige ${monstreChoisi.attaque * 5} dégats.`;
         combat.prepend(deroulementCombat);
     }
     
-    etat(monstreChoisi, personnagePrincipal);
+    etat(personnagePrincipal, monstreChoisi);
+
     if (personnagePrincipal.sante <= 0) {
         finDuCombat(`${personnagePrincipal.pseudo} est vaincu! Dommage, vous avez perdu!`)
 

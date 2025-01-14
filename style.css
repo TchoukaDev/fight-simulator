@@ -4,10 +4,20 @@ body, html {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
 }
 
 button {
     border-radius: 10px;
+}
+
+#containerTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 10px;
+    width: 600px;
 }
 
 #containerButtons {
@@ -125,4 +135,18 @@ form {
     align-items: center;
     border: 2px solid black;
     border-radius: 10px;
+}
+
+.deroulementCombat {
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#containerMessageFin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }

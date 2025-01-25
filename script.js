@@ -265,6 +265,7 @@ function combattre() {
     let retourChoixMonstre = document.createElement("button");
     retourChoixMonstre.innerHTML = "Choisir un autre monstre";
     retourChoixMonstre.classList.add("button")
+    retourChoixMonstre.classList.add("retourChoixMonstre")
     document.body.prepend(retourChoixMonstre);
     retourChoixMonstre.addEventListener("click", () => {
         containerButtons.innerHTML = "",
@@ -509,7 +510,7 @@ function etat(personnage, monstre) {
 }
 
 function finDuCombat(message) {
-
+    document.querySelector(".retourChoixMonstre").remove()
     let containerCombat = document.querySelector("#containerChoixAction");
     if (containerCombat) containerCombat.innerHTML = "";
 

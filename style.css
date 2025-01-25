@@ -115,7 +115,17 @@ form p {
     justify-content: center;
     align-items: end;
     border-radius: 10px;
+}
 
+.guerrier {
+    background-image: url(images/guerrier.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid black;     
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
 }
 
 .containerMage {
@@ -129,6 +139,16 @@ form p {
     justify-content: center;
     align-items: end;
     border-radius: 10px;
+}
+.mage {
+    background-image: url(images/mage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid black;     
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
 }
 
 .containerArcher {
@@ -144,11 +164,23 @@ form p {
     border-radius: 10px;
 }
 
+.archer {
+    background-image: url(images/archer.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid black;     
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+}
+
 .Slime {
     background-image: url(images/slime.png);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;     
+    background-repeat: no-repeat;
+    border: 2px solid black;     
     width: 200px;
     height: 300px;
     overflow: hidden;
@@ -158,7 +190,6 @@ form p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 10px;
 }
 
@@ -167,6 +198,7 @@ form p {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border: 2px solid black;    
     width: 200px;
     height: 300px;
 }
@@ -175,7 +207,6 @@ form p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 10px;
 }
 
@@ -184,6 +215,7 @@ form p {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border: 2px solid black;    
     width: 200px;
     height: 300px;
 }
@@ -194,7 +226,6 @@ form p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 10px;
 }
 
@@ -211,3 +242,4 @@ form p {
     align-items: center;
     margin: 10px;
 }
+

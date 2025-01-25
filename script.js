@@ -269,13 +269,16 @@ function combattre() {
     document.body.prepend(retourChoixMonstre);
     retourChoixMonstre.addEventListener("click", () => {
         containerButtons.innerHTML = "",
-        combat.remove();
+        combat.innerHTML = "";
         document.querySelector("#pseudoPersonnagePrincipal").innerHTML = "";
         document.querySelector("#containerImagePersonnagePrincipal").innerHTML = "";
         document.querySelector("#pseudoMonstreChoisi").innerHTML = "";
         document.querySelector("#containerImageMonstreChoisi").innerHTML = "";
-        choisirMonstre(),
+        choisirMonstre();
         retourChoixMonstre.remove();
+        personnagePrincipal.magie = 0;
+        personnagePrincipal.sante = personnagePrincipal.santeMax;
+        compteur = 0;
     })
 
     afficherCombattants();
@@ -429,27 +432,21 @@ function afficherCombattants() {
 
     if (personnagePrincipal.classe == "Guerrier") {
         imagePersonnagePrincipal = document.createElement("img");
-        imagePersonnagePrincipal.src = "images/guerrier.webp"
-        imagePersonnagePrincipal.style.width = "225px";
-        imagePersonnagePrincipal.style.height = "375px";
+        imagePersonnagePrincipal.classList.add("guerrier");
         containerImagePersonnagePrincipal.append(imagePersonnagePrincipal)
         pseudoPersonnagePrincipal.append(personnagePrincipal.pseudo)
 
     }
     else if (personnagePrincipal.classe === "Mage") {
         imagePersonnagePrincipal = document.createElement("img");
-        imagePersonnagePrincipal.src = "images/mage.jpg"
-        imagePersonnagePrincipal.style.width = "225px";
-        imagePersonnagePrincipal.style.height = "375px";
+        imagePersonnagePrincipal.classList.add("mage");
         containerImagePersonnagePrincipal.append(imagePersonnagePrincipal);
         pseudoPersonnagePrincipal.append(personnagePrincipal.pseudo);
     }
 
     else {
         imagePersonnagePrincipal = document.createElement("img");
-        imagePersonnagePrincipal.src = "images/archer.jpg"
-        imagePersonnagePrincipal.style.width = "225px";
-        imagePersonnagePrincipal.style.height = "375px";
+        imagePersonnagePrincipal.classList.add("archer");
         containerImagePersonnagePrincipal.append(imagePersonnagePrincipal);
         pseudoPersonnagePrincipal.append(personnagePrincipal.pseudo);
     }
@@ -457,27 +454,21 @@ function afficherCombattants() {
 
 if (monstreChoisi.pseudo == "Slime") {
     imageMonstreChoisi = document.createElement("img");
-    imageMonstreChoisi.src = "images/slime.png";
-    imageMonstreChoisi.style.width = "auto";
-    imageMonstreChoisi.style.height = "300px";
+    imageMonstreChoisi.classList.add("Slime")
     containerImageMonstreChoisi.append(imageMonstreChoisi);
     pseudoMonstreChoisi.append(monstreChoisi.pseudo);
 }
 
 else if (monstreChoisi.pseudo == "Loup-Garou") {
     imageMonstreChoisi = document.createElement("img");
-    imageMonstreChoisi.src = "images/loupGarou.png";
-    imageMonstreChoisi.style.width = "auto";
-    imageMonstreChoisi.style.height = "375px";
+    imageMonstreChoisi.classList.add("Loup-Garou")
     containerImageMonstreChoisi.append(imageMonstreChoisi);
     pseudoMonstreChoisi.append(monstreChoisi.pseudo);
 }
 
 else {
     imageMonstreChoisi = document.createElement("img");
-    imageMonstreChoisi.src = "images/dragon.png";
-    imageMonstreChoisi.style.width = "auto";
-    imageMonstreChoisi.style.height = "375px";
+    imageMonstreChoisi.classList.add("Dragon");
     containerImageMonstreChoisi.append(imageMonstreChoisi);
     pseudoMonstreChoisi.append(monstreChoisi.pseudo);
 }

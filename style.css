@@ -7,6 +7,7 @@ body, html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
     min-height: 100vh;
     width: 100%;
     background: linear-gradient(45deg, rgba(0,255,55,1) 0%, rgba(42,181,163,1) 50%, rgba(252,70,107,1) 100%);
@@ -16,22 +17,39 @@ button {
     border-radius: 10px;
 }
 
-#containerTop {
+#containerAll {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: start;
     gap: 20px;
-    margin: 10px;
+    margin: auto;
 
 }
 
-#personnagePrincipal, #monstreChoisi {
+#personnagePrincipal, #monstreChoisi, #containerCentre {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100px;
     min-width: 100px;
+}
+
+#personnagePrincipal, #monstreChoisi {
+    flex: 1;
+}
+
+#combat {
+    width: 80%;
+}
+
+#pseudoPersonnagePrincipal, #pseudoMonstreChoisi {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 50px;
+    color: blue;
 }
 
 #containerButtons {
@@ -46,6 +64,7 @@ button {
     padding: 15px;
     margin: 20px;
     width: 550px;
+    color: blue;
     background-color: silver;
     font-weight: bold;
     font-size: large;
@@ -54,21 +73,35 @@ button {
 }
 
 form {
+    text-align: center;
     padding: 40px;
     background-color: silver;
     border: 2px solid black;
     border-radius: 10px;
+    font-weight: bold;
+}
+
+form p {
+    font-size: 2em;
+    color: blue;
+    font-weight: bold;
 }
 
 .validerPseudo {
     display: block;
-    margin: 20px auto;
+    margin: 30px auto;
+    background: black;
+    color: silver;
+    font-weight: bold;
 }
 
 
 .button {
     padding: 15px 25px;
     margin: 10px;
+    color: silver;
+    background-color: black;
+    font-weight: bold;
 }
 
 .containerGuerrier {
@@ -98,6 +131,19 @@ form {
     border-radius: 10px;
 }
 
+.containerArcher {
+    background-image: url(images/archer.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-radius: 10px;
+}
+
 .Slime {
     background-image: url(images/slime.png);
     background-size: cover;
@@ -105,6 +151,7 @@ form {
     background-repeat: no-repeat;     
     width: 200px;
     height: 300px;
+    overflow: hidden;
 }
 #Slime{
     display: flex;

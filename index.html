@@ -7,31 +7,37 @@
     <title>Fight-simulator</title>
 </head>
 <body>
-    <div id="containerTop">
+    <div id="containerAll">
         <div id="personnagePrincipal">
             <div id="pseudoPersonnagePrincipal"></div>
             <div id="containerImagePersonnagePrincipal"></div>
+        </div>  
+
+        <div id="containerCentre">
+            <div id ="containerChoix" style= "display:none;">
+            </div>
+            <div id="containerButtons">
+                <form id="choisirPseudo">
+                    <p>Bienvenue dans ce simulateur de combat!</p>
+                    <label for = "pseudoInput">Choisis un pseudo pour ton personnage: </label>
+                    <input name="pseudoInput" id="pseudoInput" placeholder="Saisir un pseudo" required>
+
+                    <input class = "validerPseudo" class="button" type = "submit" value = "Valider"> 
+
+                    <p id="pseudoError" style ="color: red; display: none;">Veuillez saisir un pseudo valide.</p>
+                </form>
+            </div>
+                <div id= attaqueSpecialeError></div>
+                <div id = containerMessageFin></div>
+            <div id = combat></div>
         </div>
         <div id="monstreChoisi">
             <div id="pseudoMonstreChoisi"></div>
             <div id="containerImageMonstreChoisi"></div>
-        </div>    
+        </div>  
+        
     </div>
-    <div id ="containerChoix" style= "display:none;">
-    </div>
-    <div id="containerButtons">
-        <form id="choisirPseudo">
-            <label for = "pseudoInput">Choisis un pseudo pour ton personnage: </label>
-            <input name="pseudoInput" id="pseudoInput" placeholder="Saisir un pseudo" required>
-
-            <input class = "validerPseudo" class="button" type = "submit" value = "Valider"> 
-
-            <p id="pseudoError" style ="color: red; display: none;">Veuillez saisir un pseudo valide.</p>
-        </form>
-    </div>
-        <div id= attaqueSpecialeError></div>
-        <div id = containerMessageFin></div>
-    <div id = combat></div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>    
     <script src="script.js"></script>
 </body>
 </html>

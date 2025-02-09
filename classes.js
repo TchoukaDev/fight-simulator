@@ -81,8 +81,6 @@ export class Archer extends Personnage {
     } 
   
 
-
-
 export class Monstre extends Personnage {
     constructor (pseudo, sante, santeMax, attaque, difficulte ) {
     super(pseudo, "Monstre", sante, santeMax, attaque)

@@ -53,6 +53,29 @@ button {
     color: blue;
 }
 
+#containerStatsPersonnagePrincipal, #containerStatsMonstreChoisi {
+    font-weight: bold;
+}
+
+#containerSantePersonnage, #containerSanteMonstre {
+    width: 100px;
+    height: 10px;
+    border: 2px solid silver;
+    border-radius: 50px;
+    margin: 5px auto;
+}
+
+#barreSantePersonnage, #barreSanteMonstre {
+    height: 100%;
+    border-radius: 50px;
+    background-color: red;
+    transition: 0.3s;
+}
+
+.hidden {
+    display:none;
+}
+
 #containerButtons {
     display: flex;
     justify-content: space-between;

@@ -11,10 +11,15 @@
         <div id="personnagePrincipal">
             <div id="pseudoPersonnagePrincipal"></div>
             <div id="containerImagePersonnagePrincipal"></div>
+            <div id="containerStatsPersonnagePrincipal" class="hidden">
+                <div id="containerSantePersonnage">
+                    <div id="barreSantePersonnage"></div>
+                </div>
+            </div>
         </div>  
 
         <div id="containerCentre">
-            <div id ="containerChoix" style= "display:none;">
+            <div id ="containerChoix" class= "hidden">
             </div>
             <div id="containerButtons">
                 <form id="choisirPseudo">
@@ -24,7 +29,7 @@
 
                     <input class = "validerPseudo" class="button" type = "submit" value = "Valider"> 
 
-                    <p id="pseudoError" style ="color: red; display: none;">Veuillez saisir un pseudo valide.</p>
+                    <p id="pseudoError" class="hidden" style ="color: red">Veuillez saisir un pseudo valide.</p>
                 </form>
             </div>
                 <div id= attaqueSpecialeError></div>
@@ -34,11 +39,17 @@
         <div id="monstreChoisi">
             <div id="pseudoMonstreChoisi"></div>
             <div id="containerImageMonstreChoisi"></div>
+            <div id="containerStatsMonstreChoisi"  class="hidden">
+                <div id="containerSanteMonstre">
+                    <div id="barreSanteMonstre"></div>
+                </div>
+            </div>
         </div>  
         
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>    
     <script src="script.js" type ="module"></script>
     <script src="fonctionsAnnexes.js" type ="module"></script>
+    <script src="globales.js" type="module"></script>
 </body>
 </html>

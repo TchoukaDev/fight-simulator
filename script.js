@@ -1,10 +1,10 @@
+import { genererNombreAleatoire, creerPersonnage, lancerConfettis } from "./fonctionsAnnexes.js";
+import { Monstre } from "./classes.js";
+
 let personnagePrincipal;
 let pseudo;
-let classe;
 let monstreChoisi;
-let actionChoisie;
 let containerButtons = document.querySelector("#containerButtons");
-let containerStats = document.querySelector("#containerStats");
 let combat = document.querySelector("#combat");
 let deroulementCombat;
 let imagePersonnagePrincipal;
@@ -12,98 +12,6 @@ let nombreAleatoire;
 let imageMonstreChoisi;
 let compteur = 0;
 
-class Personnage {
-    constructor(pseudo, classe, sante, santeMax, attaque, esquive) {
-    this.pseudo = pseudo;
-    this.classe = classe;
-    this.santeMax = santeMax;
-    this.sante = sante;
-    this.attaque = attaque;
-    this.magie = 0;
-    this.esquive = esquive
-}
-
-
-    attaquer(personnage) {
-        personnage.sante -= this.attaque;
-        this.magie ++;
-
-    }
-
-    attaqueSpeciale(personnage) {
-        let attaqueSpecialeError = document.querySelector("#attaqueSpecialeError");
-        if (this.magie >= 5) {
-            personnage.sante -= this.attaque * 4;
-            this.magie -=5
-            attaqueSpecialeError.innerHTML = "";
-        return true
-        }
-        else
-            attaqueSpecialeError.innerHTML = "Vous avez besoin de 5 points de magie pour lancer une attaque spéciale";
-            attaqueSpecialeError.style.color = "red";
-        return false
-    }        
-
-    attendre() {
-        this.magie = this.magie + 3;
-    }
-
-
-    seSoigner() {
-        this.sante += 0.25*this.santeMax
-        if (this.sante >= this.santeMax) {
-            this.sante = this.santeMax
-        }
-    }
-}
-
-class Guerrier extends Personnage {
-    constructor(pseudo, classe) {
-        super(pseudo, classe, 600, 600, 40, 0);
-}
-}
-
-class Mage extends Personnage {
-    constructor(pseudo, classe) {
-        super(pseudo, classe, 400, 400, 70, 0);
-    }
-
-}
-
-class Archer extends Personnage {
-    constructor(pseudo, classe) {
-        super(pseudo, classe, 350, 450, 50, 20)
-        this.critique = 25;
-
-    }
-
-    attaquer(personnage) {
-    nombreAleatoire = genererNombreAleatoire();
-
-    if (nombreAleatoire <= this.critique) {
-        this.coupCritique(personnage)
-        
-    }
-    else {
-        super.attaquer(personnage)
-    }
-}
-    coupCritique(personnage) {
-        personnage.sante -= this.attaque * 2
-        this.magie++     
-    }
-    } 
-  
-
-
-
-class Monstre extends Personnage {
-    constructor (pseudo, sante, santeMax, attaque, difficulte ) {
-    super(pseudo, "Monstre", sante, santeMax, attaque)
-    this.difficulte = difficulte
-       
-}
-}
 
 
 function choisirPseudo() {
@@ -197,19 +105,6 @@ function choisirClasse(classe, choixGuerrier, choixMage, choixArcher, containerG
     }
 
 
-function creerPersonnage(classe) {
-    switch (classe) {
-    case "Guerrier" :
-        return new Guerrier(pseudo, classe);
-    
-    case "Mage" :
-        return new Mage(pseudo, classe);
-
-    case "Archer":
-        return new Archer(pseudo, classe, 25, 20)
-    }
-}
-
 function choisirMonstre() {
 
     let retourChoixClasse = document.createElement("button");
@@ -258,9 +153,7 @@ function choisirMonstre() {
          }
 
 
-function genererNombreAleatoire() {
-    return Math.floor((Math.random() * 100)+ 1);
-}
+
 function combattre() {
     let retourChoixMonstre = document.createElement("button");
     retourChoixMonstre.innerHTML = "Choisir un autre monstre";
@@ -531,24 +424,5 @@ function finDuCombat(message) {
     containerMessageFin.appendChild(recommencer);
 }
 
-function lancerConfettis() {
-    const duration = 2 * 1000; // Durée de 2 secondes
-    const end = Date.now() + duration;
-
-    // Fonction récursive pour produire un flux continu de confettis
-    (function frame() {
-        // Lancer les confettis depuis un point aléatoire
-        confetti({
-            particleCount: 5, // Nombre de particules par "salve"
-            angle: 60, // Angle de départ
-            spread: 55, // Éparpillement
-            origin: { x: Math.random(), y: Math.random() - 0.2 } // Position aléatoire
-        });
-
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    })();
-}
 
 choisirPseudo();

@@ -1,3 +1,6 @@
+import { Guerrier, Mage, Archer } from "./classes.js";
+import { pseudo } from "./script.js";
+
 export function genererNombreAleatoire() {
     return Math.floor((Math.random() * 100)+ 1);
 }

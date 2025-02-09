@@ -2,7 +2,7 @@ import { genererNombreAleatoire, creerPersonnage, lancerConfettis } from "./fonc
 import { Monstre } from "./classes.js";
 
 let personnagePrincipal;
-let pseudo;
+export let pseudo;
 let monstreChoisi;
 let containerButtons = document.querySelector("#containerButtons");
 let combat = document.querySelector("#combat");
@@ -32,6 +32,7 @@ choisirPseudo.addEventListener("submit", (e) => {
         containerChoix.style.display = "block";
         containerChoix.textContent = "Choisis ta classe:"
         choisirPseudo.style.display = "none";
+        document.body.style.justifyContent = "start";
 
         afficherChoixClasse();
     }

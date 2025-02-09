@@ -1,6 +1,7 @@
-import { genererNombreAleatoire, creerPersonnage, lancerConfettis } from "./fonctionsAnnexes.js";
+import { genererNombreAleatoire, creerPersonnage, compteurTour, lancerConfettis } from "./fonctionsAnnexes.js";
 import { Monstre } from "./classes.js";
 import {containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, statsMonstreChoisi, statsPersonnagePrincipal, barreSanteMonstre, barreSantePersonnage, containerButtons, combat} from "./globales.js"
+import { reinitialiserCompteur } from "./compteur.js";
 
 let personnagePrincipal;
 export let pseudo;
@@ -9,7 +10,6 @@ let deroulementCombat;
 let imagePersonnagePrincipal;
 let nombreAleatoire;
 let imageMonstreChoisi;
-let compteur = 0;
 
 
 
@@ -175,7 +175,7 @@ function combattre() {
         retourChoixMonstre.remove();
         personnagePrincipal.magie = 0;
         personnagePrincipal.sante = personnagePrincipal.santeMax;
-        compteur = 0;
+        reinitialiserCompteur();
     })
 
     afficherCombattants();
@@ -409,15 +409,6 @@ function attaquePuissanteManquee(personnage, monstre) {
     monstre.magie -= 5;
 }
 
-function compteurTour() {
-    compteur++;
-    let compteurTour = document.createElement("div");
-    compteurTour.innerHTML = `Tour ${compteur}`;
-    compteurTour.style.textAlign = "center";
-    compteurTour.style.background = "lightblue";
-    compteurTour.classList.add("deroulementCombat");
-    combat.prepend(compteurTour);
-}
 
 function afficherStats(personnage, div, container, barreSante, containerStats) {
     containerStats.classList.remove("hidden");

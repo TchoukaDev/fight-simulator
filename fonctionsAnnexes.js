@@ -1,4 +1,5 @@
 import { Guerrier, Mage, Archer } from "./classes.js";
+import { afficherCompteur, incrementerCompteur } from "./compteur.js";
 import { pseudo } from "./script.js";
 
 export function genererNombreAleatoire() {
@@ -16,6 +17,16 @@ export function creerPersonnage(classe) {
     case "Archer":
         return new Archer(pseudo, classe, 25, 20)
     }
+}
+
+export function compteurTour() {
+    incrementerCompteur()
+    let compteurTour = document.createElement("div");
+    compteurTour.innerHTML = `Tour ${afficherCompteur()}`;
+    compteurTour.style.textAlign = "center";
+    compteurTour.style.background = "lightblue";
+    compteurTour.classList.add("deroulementCombat");
+    combat.prepend(compteurTour);
 }
 
 export function lancerConfettis() {

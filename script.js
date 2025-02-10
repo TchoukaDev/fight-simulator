@@ -2,15 +2,13 @@ import { genererNombreAleatoire, creerPersonnage, compteurTour, attaqueManquee, 
 import { Monstre } from "./modules/classes.js";
 import {choixGuerrier, containerGuerrier, containerMage, choixMage, choixArcher, containerArcher, containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, containerButtons, combat, objetDeroulementCombat} from "./modules/globales.js"
 import { reinitialiserCompteur } from "./modules/compteur.js";
-import { lancerConfettis, mettreAJourStats, viderAttaqueSpecialeError, afficherInfosClasse, creerDeroulementCombat, afficherCombattants, creerBoutonRetour } from "./modules/affichage.js";
+import { getImageMonstreChoisi, getImagePersonnagePrincipal, lancerConfettis, mettreAJourStats, viderAttaqueSpecialeError, afficherInfosClasse, creerDeroulementCombat, afficherCombattants, creerBoutonRetour } from "./modules/affichage.js";
 
 export let personnagePrincipal;
 export let pseudo;
 export let monstreChoisi;
 export let retourChoixPseudo;
-let imagePersonnagePrincipal;
 let nombreAleatoire;
-let imageMonstreChoisi;
 let retourChoixClasse;
 let retourChoixMonstre;
 
@@ -138,10 +136,11 @@ function combattre() {
     mettreAJourStats();
     compteurTour();
 
+
+    //Tour du joueur
     containerChoix.textContent = "Que voulez-vous faire?"
     let actions = ["Attaquer", "Lancer une attaque spéciale", "Attendre", "Se soigner"];
-    
-    actions.forEach ((action) => {
+        actions.forEach ((action) => {      //Créer boutons action
         let choixAction = document.createElement("button");
         choixAction.textContent = action;
         choixAction.classList.add("button");
@@ -196,9 +195,11 @@ function combattre() {
             break
             }
 
+
+            //Tour du monstre
     setTimeout(() => {
     if (monstreChoisi.sante <= 0) {
-        imageMonstreChoisi.remove();
+        getImageMonstreChoisi().remove();
         finDuCombat(`${monstreChoisi.pseudo} est vaincu! Félicitations, vous avez gagné!`);
         lancerConfettis();
         return
@@ -243,10 +244,10 @@ function combattre() {
     }
     
     compteurTour();
- 
+     //Fin du tour ,passage au tour suivant.
 
     if (personnagePrincipal.sante <= 0) {
-        imagePersonnagePrincipal.remove();
+        getImagePersonnagePrincipal().remove();
         finDuCombat(`${personnagePrincipal.pseudo} est vaincu! Dommage, vous avez perdu!`)
 
     }

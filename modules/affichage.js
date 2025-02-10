@@ -2,7 +2,6 @@ import { attaqueSpecialeError, containerButtons, objetDeroulementCombat, combat,
 import { personnagePrincipal, monstreChoisi } from "../script.js";
 
 
-
 export function afficherInfosClasse(choix, container, classeCSS, texte) {
     let containerADevoiler = [choix, container];
     containerADevoiler.forEach((container) => {
@@ -42,6 +41,8 @@ export function afficherCombattants() {
     let containerImagePersonnagePrincipal = document.querySelector("#containerImagePersonnagePrincipal");
     let pseudoMonstreChoisi = document.querySelector("#pseudoMonstreChoisi");
     let containerImageMonstreChoisi = document.querySelector("#containerImageMonstreChoisi");
+    const imageMonstreChoisi = document.querySelector("#imageMonstreChoisi");   
+    const imagePersonnagePrincipal = document.querySelector("#imagePersonnagePrincipal");
  
     afficherPersonnage(personnagePrincipal, containerImagePersonnagePrincipal, pseudoPersonnagePrincipal);
     afficherPersonnage(monstreChoisi, containerImageMonstreChoisi, pseudoMonstreChoisi);
@@ -49,11 +50,20 @@ export function afficherCombattants() {
  
  function afficherPersonnage(personnage, containerImage, containerPseudo) {
      let image = document.createElement ("img");
+     image.id = personnage.classe === "Monstre"? "imageMonstreChoisi" : "imagePersonnagePrincipal";
      let classCSS = personnage.classe === "Monstre"? personnage.pseudo : personnage.classe.toLowerCase(); //si le personnage n'est pas un monstre, mettre en miniscule
      image.classList.add(classCSS)
      containerImage.append(image)
      containerPseudo.append(personnage.pseudo)
  }
+
+ export function getImageMonstreChoisi() {
+    return document.querySelector("#imageMonstreChoisi")
+}
+
+export function getImagePersonnagePrincipal() {
+    return document.querySelector("#imagePersonnagePrincipal")
+}
 
  function afficherStats(personnage, div, container, barreSante, containerStats) {
     containerStats.classList.remove("hidden");

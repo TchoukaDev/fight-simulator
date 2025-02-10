@@ -1,20 +1,20 @@
-import { genererNombreAleatoire, creerPersonnage, compteurTour, lancerConfettis, viderAttaqueSpecialeError } from "./fonctionsAnnexes.js";
-import { Monstre } from "./classes.js";
-import {choixGuerrier, containerGuerrier, containerMage, choixMage, choixArcher, containerArcher, containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, statsMonstreChoisi, statsPersonnagePrincipal, barreSanteMonstre, barreSantePersonnage, containerButtons, combat, objetDeroulementCombat} from "./globales.js"
-import { reinitialiserCompteur } from "./compteur.js";
+import { genererNombreAleatoire, creerPersonnage, compteurTour, attaqueManquee, attaquePuissanteManquee, gererEcouteursChoixClasse} from "./modules/fonctionsAnnexes.js";
+import { Monstre } from "./modules/classes.js";
+import {choixGuerrier, containerGuerrier, containerMage, choixMage, choixArcher, containerArcher, containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, statsMonstreChoisi, statsPersonnagePrincipal, barreSanteMonstre, barreSantePersonnage, containerButtons, combat, objetDeroulementCombat} from "./modules/globales.js"
+import { reinitialiserCompteur } from "./modules/compteur.js";
+import { lancerConfettis, viderAttaqueSpecialeError, afficherInfosClasse, creerDeroulementCombat, afficherCombattants, creerBoutonRetour } from "./modules/affichage.js";
 
-let personnagePrincipal;
+export let personnagePrincipal;
 export let pseudo;
-let monstreChoisi;
+export let monstreChoisi;
+export let retourChoixPseudo;
 let imagePersonnagePrincipal;
 let nombreAleatoire;
 let imageMonstreChoisi;
-let retourChoixPseudo;
 let retourChoixClasse;
 let retourChoixMonstre;
 
-
-
+choisirPseudo();
 
 function choisirPseudo() {
 let pseudoInput = document.querySelector("#pseudoInput");
@@ -41,18 +41,6 @@ choisirPseudo.addEventListener("submit", (e) => {
     )
 }
 
-function afficherInfosClasse(choix, container, classeCSS, texte) {
-    let containerADevoiler = [choix, container];
-    containerADevoiler.forEach((container) => {
-        container.style.display = "flex"
-    })
-    container.append(choix);
-    container.classList.add(classeCSS)
-    choix.innerHTML = texte;
-    choix.classList.add("button");
-    containerButtons.append(container)
-}
-
 function afficherChoixClasse() {
     retourChoixPseudo = creerBoutonRetour("Retour au choix du pseudo", "button")
 
@@ -64,25 +52,10 @@ function afficherChoixClasse() {
     afficherInfosClasse(choixMage, containerMage, "containerMage", "Mage <br><br> PV: 400 <br> Attaque: 70");
     afficherInfosClasse(choixArcher, containerArcher, "containerArcher", "Archer <br><br> PV: 350 <br> Attaque: 50 <br><br> Critique: 25% <br><br> Esquive: 20%");
 
-
-    choixGuerrier.addEventListener("click", () => {
-        choisirClasse("Guerrier",choixGuerrier, choixMage, choixArcher, containerGuerrier, containerMage, containerArcher),
-        retourChoixPseudo.remove()
-        }
-    );
-    choixMage.addEventListener("click", () => {
-        choisirClasse("Mage", choixGuerrier, choixMage, choixArcher, containerGuerrier, containerMage, containerArcher),
-        retourChoixPseudo.remove()
-        }
-    );
-    choixArcher.addEventListener("click", () => {
-        choisirClasse("Archer", choixGuerrier, choixMage, choixArcher, containerGuerrier, containerMage, containerArcher),
-        retourChoixPseudo.remove()
-        }   
-    );
+    gererEcouteursChoixClasse();
 }
 
-function choisirClasse(classe, choixGuerrier, choixMage, choixArcher, containerGuerrier, containerMage, containerArcher) {
+export function choisirClasse(classe, choixGuerrier, choixMage, choixArcher, containerGuerrier, containerMage, containerArcher) {
    
     personnagePrincipal = creerPersonnage(classe);
 
@@ -186,6 +159,7 @@ function combattre() {
             button.disabled = false;
         })
         }, 500)
+
     switch(action) {
         case "Attaquer" :
             personnagePrincipal.attaquer(monstreChoisi);
@@ -282,45 +256,6 @@ function combattre() {
 
 }
 
-function creerDeroulementCombat(couleur, texte){
-    objetDeroulementCombat.deroulementCombat = (document.createElement("div"));
-    objetDeroulementCombat.deroulementCombat.style.background = couleur;
-    objetDeroulementCombat.deroulementCombat.classList.add("deroulementCombat")
-    objetDeroulementCombat.deroulementCombat.innerHTML = texte;
-    combat.prepend(objetDeroulementCombat.deroulementCombat)
-}
-
-function afficherCombattants() {
-   let pseudoPersonnagePrincipal = document.querySelector("#pseudoPersonnagePrincipal");
-   let containerImagePersonnagePrincipal = document.querySelector("#containerImagePersonnagePrincipal");
-   let pseudoMonstreChoisi = document.querySelector("#pseudoMonstreChoisi");
-   let containerImageMonstreChoisi = document.querySelector("#containerImageMonstreChoisi");
-
-   afficherPersonnage(personnagePrincipal, containerImagePersonnagePrincipal, pseudoPersonnagePrincipal);
-   afficherPersonnage(monstreChoisi, containerImageMonstreChoisi, pseudoMonstreChoisi);
-}
-
-function afficherPersonnage(personnage, containerImage, containerPseudo) {
-    let image = document.createElement ("img");
-    let classCSS = personnage.classe === "Monstre"? personnage.pseudo : personnage.classe.toLowerCase();
-    console.log(classCSS)
-    image.classList.add(classCSS)
-    containerImage.append(image)
-    containerPseudo.append(personnage.pseudo)
-
-}
-
-function attaqueManquee(personnage, monstre) {
-    creerDeroulementCombat("lightgreen", `${personnage.pseudo} esquive l'attaque! ${monstre.pseudo} n'inflige aucun dégat mais il gagne 1 point de magie.`)
-    
-}
-
-function attaquePuissanteManquee(personnage, monstre) {
-    creerDeroulementCombat("lightgreen", `Incroyable! ${personnage.pseudo} esquive l'attaque puissante de ${monstre.pseudo} qui n'inflige aucun dégat. Il gagne quand même 1 point de magie.`);
-    monstre.magie -= 5;
-}
-
-
 function afficherStats(personnage, div, container, barreSante, containerStats) {
     containerStats.classList.remove("hidden");
     barreSante.style.width = personnage.sante/personnage.santeMax * 100 + "%";
@@ -368,13 +303,3 @@ function finDuCombat(message) {
 
     containerMessageFin.appendChild(recommencer);
 }
-
-function creerBoutonRetour(texte, classe1, classe2) {
-
-    let boutonRetour = document.createElement("button");
-        boutonRetour.innerHTML = texte;
-        boutonRetour.classList.add(classe1, classe2);
-        document.body.prepend(boutonRetour)
-    return boutonRetour
-}
-choisirPseudo();

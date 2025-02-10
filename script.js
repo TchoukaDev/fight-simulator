@@ -1,8 +1,8 @@
 import { genererNombreAleatoire, creerPersonnage, compteurTour, attaqueManquee, attaquePuissanteManquee, gererEcouteursChoixClasse} from "./modules/fonctionsAnnexes.js";
 import { Monstre } from "./modules/classes.js";
-import {choixGuerrier, containerGuerrier, containerMage, choixMage, choixArcher, containerArcher, containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, statsMonstreChoisi, statsPersonnagePrincipal, barreSanteMonstre, barreSantePersonnage, containerButtons, combat, objetDeroulementCombat} from "./modules/globales.js"
+import {choixGuerrier, containerGuerrier, containerMage, choixMage, choixArcher, containerArcher, containerStatsPersonnagePrincipal, containerStatsMonstreChoisi, containerButtons, combat, objetDeroulementCombat} from "./modules/globales.js"
 import { reinitialiserCompteur } from "./modules/compteur.js";
-import { lancerConfettis, viderAttaqueSpecialeError, afficherInfosClasse, creerDeroulementCombat, afficherCombattants, creerBoutonRetour } from "./modules/affichage.js";
+import { lancerConfettis, mettreAJourStats, viderAttaqueSpecialeError, afficherInfosClasse, creerDeroulementCombat, afficherCombattants, creerBoutonRetour } from "./modules/affichage.js";
 
 export let personnagePrincipal;
 export let pseudo;
@@ -254,23 +254,6 @@ function combattre() {
      })  
     })
 
-}
-
-function afficherStats(personnage, div, container, barreSante, containerStats) {
-    containerStats.classList.remove("hidden");
-    barreSante.style.width = personnage.sante/personnage.santeMax * 100 + "%";
-    barreSante.classList.remove("hidden");
-    if (personnage.sante <= 0) {    //Eviter les PV négatifs//
-        personnage.sante = 0
-    }
-    div.innerHTML = `PV: ${personnage.sante}/${personnage.santeMax} <br> Magie: ${personnage.magie} points`;
-    if (!container.contains(div))
-    container.append(div)
-}
-
-function mettreAJourStats() {
-    afficherStats(personnagePrincipal, statsPersonnagePrincipal, containerStatsPersonnagePrincipal, barreSantePersonnage, containerStatsPersonnagePrincipal);
-    afficherStats(monstreChoisi, statsMonstreChoisi, containerStatsMonstreChoisi, barreSanteMonstre, containerStatsMonstreChoisi);
 }
 
 function finDuCombat(message) {

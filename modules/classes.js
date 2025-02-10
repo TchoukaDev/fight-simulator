@@ -1,4 +1,4 @@
-import { viderAttaqueSpecialeError } from "./fonctionsAnnexes.js";
+import { viderAttaqueSpecialeError } from "./affichage.js";
 import { attaqueSpecialeError } from "./globales.js";
 
 export class Personnage {

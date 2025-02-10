@@ -1,6 +1,7 @@
 import { Guerrier, Mage, Archer } from "./classes.js";
 import { afficherCompteur, incrementerCompteur } from "./compteur.js";
 import { pseudo } from "./script.js";
+import { attaqueSpecialeError } from "./globales.js";
 
 export function genererNombreAleatoire() {
     return Math.floor((Math.random() * 100)+ 1);
@@ -27,6 +28,10 @@ export function compteurTour() {
     compteurTour.style.background = "lightblue";
     compteurTour.classList.add("deroulementCombat");
     combat.prepend(compteurTour);
+}
+
+export function viderAttaqueSpecialeError() {
+    attaqueSpecialeError.innerHTML = "";
 }
 
 export function lancerConfettis() {

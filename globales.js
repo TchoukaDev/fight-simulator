@@ -1,8 +1,16 @@
 export let containerStatsPersonnagePrincipal = document.querySelector("#containerStatsPersonnagePrincipal");
 export let containerStatsMonstreChoisi = document.querySelector("#containerStatsMonstreChoisi");
+export let choixGuerrier = document.createElement("button");
+export let containerGuerrier = document.createElement("div");
+export let choixMage = document.createElement("button");
+export let choixArcher = document.createElement("button");
+export let containerArcher = document.createElement("div");
+export let containerMage = document.createElement("div");
 export let statsPersonnagePrincipal = document.createElement ("div");
 export let statsMonstreChoisi = document.createElement ("div");
 export let barreSanteMonstre = document.querySelector("#barreSanteMonstre");
 export let barreSantePersonnage = document.querySelector("#barreSantePersonnage");
 export let containerButtons = document.querySelector("#containerButtons");
 export let combat = document.querySelector("#combat");
+export let attaqueSpecialeError = document.querySelector("#attaqueSpecialeError");
+export let objetDeroulementCombat = {deroulementCombat: undefined}; //utilisation d'un objet pour pouvoir redéfinir la valeur de deroulementCombat dans les autre modules.

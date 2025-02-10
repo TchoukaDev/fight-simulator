@@ -1,4 +1,7 @@
-class Personnage {
+import { viderAttaqueSpecialeError } from "./fonctionsAnnexes.js";
+import { attaqueSpecialeError } from "./globales.js";
+
+export class Personnage {
     constructor(pseudo, classe, sante, santeMax, attaque, esquive) {
     this.pseudo = pseudo;
     this.classe = classe;
@@ -13,15 +16,14 @@ class Personnage {
     attaquer(personnage) {
         personnage.sante -= this.attaque;
         this.magie ++;
-
+        viderAttaqueSpecialeError();
     }
 
     attaqueSpeciale(personnage) {
-        let attaqueSpecialeError = document.querySelector("#attaqueSpecialeError");
         if (this.magie >= 5) {
             personnage.sante -= this.attaque * 4;
             this.magie -=5
-            attaqueSpecialeError.innerHTML = "";
+            viderAttaqueSpecialeError();
         return true
         }
         else
@@ -32,6 +34,7 @@ class Personnage {
 
     attendre() {
         this.magie = this.magie + 3;
+        viderAttaqueSpecialeError();
     }
 
 
@@ -40,6 +43,7 @@ class Personnage {
         if (this.sante >= this.santeMax) {
             this.sante = this.santeMax
         }
+        viderAttaqueSpecialeError()
     }
 }
 
@@ -65,6 +69,7 @@ export class Archer extends Personnage {
 
     attaquer(personnage) {
     nombreAleatoire = genererNombreAleatoire();
+    viderAttaqueSpecialeError();
 
     if (nombreAleatoire <= this.critique) {
         this.coupCritique(personnage)

@@ -121,10 +121,13 @@ form p {
 
 .button {
     padding: 15px 25px;
-    margin: 10px;
     color: silver;
     background-color: black;
     font-weight: bold;
+}
+
+.button:hover {
+    cursor: pointer;
 }
 
 .containerGuerrier {

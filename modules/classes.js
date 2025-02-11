@@ -1,5 +1,6 @@
 import { viderAttaqueSpecialeError } from "./affichage.js";
 import { attaqueSpecialeError } from "./globales.js";
+import { genererNombreAleatoire } from "./fonctionsAnnexes.js";
 
 export class Personnage {
     constructor(pseudo, classe, sante, santeMax, attaque, esquive) {
@@ -68,7 +69,7 @@ export class Archer extends Personnage {
     }
 
     attaquer(personnage) {
-    nombreAleatoire = genererNombreAleatoire();
+    let nombreAleatoire = genererNombreAleatoire();
     viderAttaqueSpecialeError();
 
     if (nombreAleatoire <= this.critique) {

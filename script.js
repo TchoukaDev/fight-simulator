@@ -8,7 +8,7 @@ export let personnagePrincipal;
 export let pseudo;
 export let monstreChoisi;
 export let retourChoixPseudo;
-let nombreAleatoire;
+export let nombreAleatoire;
 let retourChoixClasse;
 let retourChoixMonstre;
 
@@ -198,8 +198,9 @@ function combattre() {
 
             //Tour du monstre
     setTimeout(() => {
-    if (monstreChoisi.sante <= 0) {
+    if (monstreChoisi.sante <= 0) {         //Victoire du joueur
         getImageMonstreChoisi().remove();
+        document.querySelector("#monstreChoisi").style.display = "none";
         finDuCombat(`${monstreChoisi.pseudo} est vaincu! Félicitations, vous avez gagné!`);
         lancerConfettis();
         return
@@ -246,8 +247,9 @@ function combattre() {
     compteurTour();
      //Fin du tour ,passage au tour suivant.
 
-    if (personnagePrincipal.sante <= 0) {
+    if (personnagePrincipal.sante <= 0) { //Défaite du joueur
         getImagePersonnagePrincipal().remove();
+        document.querySelector("#personnagePrincipal").style.display = "none";
         finDuCombat(`${personnagePrincipal.pseudo} est vaincu! Dommage, vous avez perdu!`)
 
     }
@@ -271,7 +273,6 @@ function finDuCombat(message) {
     messageDeFin.style.margin = "20px 0";
 
     containerMessageFin.appendChild(messageDeFin);
-    document.querySelector("#monstreChoisi").style.display = "none"
     document.querySelector("#containerAll").style.gap = "50px"
     containerChoix.classList.add("hidden");
     containerButtons.style.display = "none";

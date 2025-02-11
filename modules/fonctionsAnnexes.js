@@ -2,6 +2,7 @@ import { Guerrier, Mage, Archer } from "./classes.js";
 import { afficherCompteur, incrementerCompteur } from "./compteur.js";
 import { pseudo, retourChoixPseudo, choisirClasse } from "../script.js";
 import { containerArcher, containerGuerrier, containerMage, choixArcher, choixGuerrier, choixMage } from "./globales.js";
+import { creerDeroulementCombat } from "./affichage.js";
 
 
 export function genererNombreAleatoire() {
@@ -41,20 +42,18 @@ function ecouteurChoixClasse(classe) {
 const ecouteur = {
     "Guerrier" : () => ecouteurChoixClasse("Guerrier"),
     "Mage": () => ecouteurChoixClasse("Mage"),
-    "Archer": () => ecouteurChoixArcher("Archer")
+    "Archer": () => ecouteurChoixClasse("Archer")
 }
 
 export function attaqueManquee(personnage, monstre) {
-    creerDeroulementCombat("lightgreen", `${personnage.pseudo} esquive l'attaque! ${monstre.pseudo} n'inflige aucun dégat mais il gagne 1 point de magie.`)
+    creerDeroulementCombat("lightcoral", `${personnage.pseudo} esquive l'attaque! ${monstre.pseudo} n'inflige aucun dégat mais il gagne 1 point de magie.`)
     
 }
 
 export function attaquePuissanteManquee(personnage, monstre) {
-    creerDeroulementCombat("lightgreen", `Incroyable! ${personnage.pseudo} esquive l'attaque puissante de ${monstre.pseudo} qui n'inflige aucun dégat. Il gagne quand même 1 point de magie.`);
+    creerDeroulementCombat("lightcoral", `Incroyable! ${personnage.pseudo} esquive l'attaque puissante de ${monstre.pseudo} qui n'inflige aucun dégat. Il gagne quand même 1 point de magie.`);
     monstre.magie -= 5;
 }
-
-
 
 export function compteurTour() {
     incrementerCompteur()
